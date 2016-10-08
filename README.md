@@ -1,2 +1,2 @@
 # fullstack-course5-assignments
-AngularJS Assignments 
+AngularJS Assignments, none submitted however 
