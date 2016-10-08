@@ -46,12 +46,18 @@
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6">
-     <h2>Already Bought:</h2>
+    <div class="col-md-6"
+          ng-controller='BoughtItemController as boughtList'>
+     <h2>Already Bought: {{boughtList.length}}</h2>
      <ul>
-       <li>Bought 10 cookies</li>
+       <li ng-repeat="item in boughtList.items">
+         {{item.quantity}} of {{item.name}}
+         <span class="glyphicon glyphicon-ok"></span> Bought</button>
+       </li>
      </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-model="boughtList.displayMessage">
+       {{boughtList.displayMessage}}
+     </div>
     </div>
   </div>
 </div>

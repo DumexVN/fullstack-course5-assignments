@@ -56,11 +56,23 @@ function ToBuyItemController(ShoppingListService, intFilter){
 	};
 }
 
+//// BOUGHT
+BoughtItemController.$inject=['ShoppingListService'];
+function BoughtItemController(ShoppingListService){
+	var boughtList = this;
+
+	boughtList.items = ShoppingListService.getBoughtItems();
+}
+
+
 // Service provider
 function ShoppingListService(maxItem){
 	var service = this;
 
 	var itemList = [];
+	var itemBoughtList = [];
+
+	var mes = "";
 
 	service.addItem = function (itemName, itemQuantity) {
 		if ((maxItem === undefined) ||
@@ -79,6 +91,10 @@ function ShoppingListService(maxItem){
 	};
 
 	service.removeItem = function(itemIndex){
+		var copyItem = itemList[itemIndex];
+		itemBoughtList.push(copyItem);
+		// does javascript has remove and return
+		// i.e. object foo = array.remove([index-of-foo])?
 		itemList.splice(itemIndex, 1);
 	};
 
@@ -86,6 +102,10 @@ function ShoppingListService(maxItem){
 		return itemList;
 	};
 	
+	service.getBoughtItems = function() {
+		return itemBoughtList;
+	};
+
 }
 
 function ShoppingListServiceProvider(){
@@ -97,15 +117,9 @@ function ShoppingListServiceProvider(){
 
 	  provider.$get = function () {
 	    var shoppingList = new ShoppingListService(provider.defaults.maxItems);
-
 	    return shoppingList;
 	  };
 }
-
-// BOUGHT
-BoughtItemController.$inject=['ShoppingListService'];
-
-
 
 // Filter
 function intFilter(){
