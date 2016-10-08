@@ -1,2 +1,6 @@
 # fullstack-course5-assignments
-AngularJS Assignments, none submitted however 
+AngularJS Assignments
+
+- some unfinished
+- none submitted
+- dirPath pun intended
